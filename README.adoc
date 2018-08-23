@@ -1,0 +1,50 @@
+:toc: right
+:toc-title: Contents
+
+:icons: font
+
+= Spring Boot Credhub Service Client
+
+== Overview
+
+This project https://github.com/srinivasa-vasu/credentials-service-client.git[credential-service-client] interpolates credentials persisted in credhub in a non-assisted mode using spring cloud libraries when you bind a broker service like https://github.com/srinivasa-vasu/credentials-service-broker.git[credential-service-broker] that leverages platform's integrated credhub for credential management
+
+== Getting Started
+
+Running PCF foundation or an active account in https://run.pivotal.io[PWS]
+
+Service broker like https://github.com/srinivasa-vasu/credentials-service-broker.git[credential-service-broker] should already have been pushed to the platform. Refer the broker https://github.com/srinivasa-vasu/credentials-service-broker/blob/master/README.adoc[documentation] for configuration and deployment.
+
+=== Build :: Client App
+* Build it
+```
+mvn clean package
+```
+After building, you have to push the client app to Cloud Foundry
+
+=== Push :: Client App
+
+* Login to cloud foundry
+```
+cf login -a <login_api_endpoint>
+```
+* Better to target `system` organization
+```
+cf target -o <org> -s <space>
+```
+* Update manifest info (manifest.yml) to include the bind-service entry
+```
+applications:
+- name: credentials-service-client
+  memory: 1G
+  path: target/credentials-service-client-0.0.1-SNAPSHOT.jar
+  services:
+  - credhub-svc
+```
+* cf push
+
+TIP: Verify the results in a web browser
+
+
+
+
