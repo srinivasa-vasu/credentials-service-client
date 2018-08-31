@@ -12,5 +12,6 @@ out
 local.properties
 .DS_Store
 README.html
+mvnw
+mvnw.cmd
 .editorconfig
-manifest.yml
