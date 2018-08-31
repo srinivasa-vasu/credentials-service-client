@@ -1,5 +1,5 @@
 ---
 applications:
-- name: secret-client
+- name: credentials-service-client
   memory: 1G
   path: target/credentials-service-client-0.0.1-SNAPSHOT.jar
